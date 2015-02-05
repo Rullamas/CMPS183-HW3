@@ -1,4 +1,3 @@
-# coding: utf8
 from datetime import datetime
 import re
 import unittest
@@ -6,20 +5,15 @@ import unittest
 # Format for wiki links.
 RE_LINKS = re.compile('(<<)(.*?)(>>)')
 
-db.define_table('pagetable' # Name 'page' is reserved unfortunately.
-    # Complete!
+db.define_table('pagetable', # Name 'page' is reserved unfortunately.
+    Field('name', 'text'),
     )
-
 
 db.define_table('revision',
-    # Complete!
+    Field('page_id', db.pagetable),
+    Field('author_id', db.auth_user),
+    Field('date_posted', 'datetime', default= datetime.utcnow()),
     Field('body', 'text'), # This is the main content of a revision.
-    )
-
-db.define_table('testpage',
-    # This table is used for testing only.  Don't use it in your code,
-    # but feel free to look at how I use it. 
-    Field('body', 'text'),
     )
 
 def create_wiki_links(s):

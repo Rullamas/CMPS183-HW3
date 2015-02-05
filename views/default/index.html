@@ -5,5 +5,7 @@
 
 {{=content}}
 
-<!-- You need to put here buttons to see the revision history (to implement later),
-and to edit (to implement now). -->
+
+{{if edit_button and not newpost:}}
+<p>{{=A('Edit Post', _class='btn', _href=URL('default', 'index', args=[title], vars=dict(edit='true')))}}</p>
+{{pass}}
